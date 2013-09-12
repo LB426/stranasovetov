@@ -19,3 +19,4 @@
 *.swp
 .rvmrc
 .DS_Store
+config/database.yml
