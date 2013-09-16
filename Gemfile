@@ -6,6 +6,8 @@ gem 'rails', '4.0.0'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+gem "bcrypt-ruby", :require => "bcrypt"
+
 gem 'quiet_assets', :group => :development
 
 # Use CoffeeScript for .js.coffee assets and views
