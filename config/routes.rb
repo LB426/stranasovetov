@@ -1,5 +1,13 @@
 Stranasovetov::Application.routes.draw do
+
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "sign_up" => "users#new", :as => "sign_up"
+  resources :users
+  resources :sessions
+
   get "about/index"
+
   root 'about#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
