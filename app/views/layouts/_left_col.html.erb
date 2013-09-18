@@ -5,7 +5,7 @@
 		<% if current_user.group =~ /администратор/ %>
 	  	<%= link_to "Пользователи", users_path %>
 	  <% end %>
-	  <%= link_to "Публикации", logout_path %>
+	  <%= link_to "Публикации", publications_path %>
   	<%= link_to "Выход", logout_path %>
   <% else %>
     <%= link_to "Вход", login_path %>

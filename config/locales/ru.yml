@@ -5,3 +5,19 @@ ru:
   time:
     formats:
       default: "%d/%m/%Y %H:%M"
+  activerecord:
+    models:
+      user: "пользователь"
+      publication: "публикация"
+    attributes:
+      publication:
+        title: "заголовок"
+        text: "текст"
+    errors:
+      models:
+        publication:
+          attributes:
+            title:
+              blank: "пустой"
+            text:
+              blank: "пустой"

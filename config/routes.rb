@@ -1,10 +1,12 @@
 Stranasovetov::Application.routes.draw do
+  
+  resources :publications
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
-  get "sign_up" => "users#new", :as => "sign_up"
   get "users/:id/delete" => "users#destroy", :as => "delete_user"
   resources :users
+  
   resources :sessions
 
   get "about/index"
