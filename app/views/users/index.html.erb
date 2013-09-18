@@ -1,3 +1,4 @@
+<div class="post">
 <%= link_to "Создать пользователя", new_user_path %>
 <table>
   <th>
@@ -6,9 +7,12 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.login %></td>
+    <td><%= user.fio %></td>
+    <td><%= user.group %></td>
     <td><%= user.updated_at.strftime("%Y:%m:%d %H:%M") %></td>
     <td><%= link_to "Изменить", edit_user_path(user) %></td>
     <td><%= link_to "Удалить", delete_user_path(user) %></td>
   </tr>
 <% end %>
 </table>
+</div>

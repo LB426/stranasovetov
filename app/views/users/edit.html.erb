@@ -1,5 +1,5 @@
 <div class="post">
-<h1>Создать пользователя</h1>
+<h1>Изменить пользователя</h1>
 
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
@@ -29,7 +29,7 @@
     <%= f.select :group, [['автор', 'автор'], ['администратор', 'администратор']] %>
   </p>
 
-  <p class="button"><%= f.submit "Создать" %></p>
+  <p class="button"><%= f.submit "Изменить" %></p>
 <% end %>
 </div>
 

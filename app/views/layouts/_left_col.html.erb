@@ -1,0 +1,13 @@
+<div class="col1">
+	<div><a href="/">Главная страница</a></div>
+	<div class="line"></div>
+	<% if current_user %>
+		<% if current_user.group =~ /администратор/ %>
+	  	<%= link_to "Пользователи", users_path %>
+	  <% end %>
+	  <%= link_to "Публикации", logout_path %>
+  	<%= link_to "Выход", logout_path %>
+  <% else %>
+    <%= link_to "Вход", login_path %>
+  <% end %>
+</div>

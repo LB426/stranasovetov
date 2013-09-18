@@ -10,6 +10,9 @@ class ApplicationController < ActionController::Base
 
 	def current_user
 	  @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Пользователь не найден, выполните вход!"
+      render :text => 'Not Found', :status => '404'
 	end
 
   def current_user?

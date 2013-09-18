@@ -1,14 +1,15 @@
-<h1>Вход только для членов парти!</h1>
-
-<%= form_tag sessions_path do %>
-  <p>
-    <%= label_tag :Логин %><br />
-    <%= text_field_tag :login, params[:login] %>
-  </p>
-  <p>
-    <%= label_tag :Пароль %><br />
-    <%= password_field_tag :password %>
-  </p>
-  <p class="button"><%= submit_tag "Войти" %></p>
-<% end %>
+<div class="post">
+	<h1 align="center">Вход только для членов парти!</h1>
+	<%= form_tag sessions_path do %>
+	  <p>
+	    <%= label_tag :Логин %>
+	    <%= text_field_tag :login, params[:login] %>
+	  </p>
+	  <p>
+	    <%= label_tag :Пароль %>
+	    <%= password_field_tag :password %>
+	  </p>
+	  <p class="button"><%= submit_tag "Войти" %></p>
+	<% end %>
+</div>
 
