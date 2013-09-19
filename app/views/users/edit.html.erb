@@ -1,7 +1,8 @@
 <div class="post">
 <h1>Изменить пользователя</h1>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :url => user_path(@user), :html => { :multipart => true } do |f| %>
+  
   <% if @user.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
@@ -12,9 +13,14 @@
       </ul>
     </div>
   <% end %>
+
   <p>
     <%= f.label :login %><br />
-    <%= f.text_field :login %>
+    <% if current_user.group =~ /администратор/ %>
+      <%= f.text_field :login %>
+    <% else %>
+      <%= f.text_field :login, :readonly => true %>
+    <% end %>
   </p>
   <p>
     <%= f.label :password %><br />
@@ -26,7 +32,17 @@
   </p>
   <p>
     <%= f.label "Группа" %><br />
-    <%= f.select :group, [['автор', 'автор'], ['администратор', 'администратор']] %>
+    <% if current_user.group =~ /администратор/ %>
+      <%= f.select :group, [['автор', 'автор'], ['администратор', 'администратор']] %>
+    <% else %>
+      <%= f.select :group, [['автор', 'автор'], ['администратор', 'администратор']], {}, :disabled => true %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %><br />
+    <%= image_tag @user.avatar.url %>
   </p>
 
   <p class="button"><%= f.submit "Изменить" %></p>

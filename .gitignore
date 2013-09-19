@@ -14,9 +14,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
 # my
 *.swo
 *.swp
 .rvmrc
 .DS_Store
 config/database.yml
+public/images/avatars

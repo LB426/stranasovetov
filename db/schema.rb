@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130918165034) do
+ActiveRecord::Schema.define(version: 20130919122558) do
 
   create_table "publications", force: true do |t|
     t.string   "title",      null: false
@@ -27,8 +27,12 @@ ActiveRecord::Schema.define(version: 20130918165034) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "group",         null: false
+    t.string   "group",               null: false
     t.string   "fio"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end

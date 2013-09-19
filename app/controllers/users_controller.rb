@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :current_user?
 
   def index
   	if current_user.group =~ /администратор/
@@ -61,14 +60,20 @@ class UsersController < ApplicationController
   def update
   	if current_user.group =~ /администратор/
   		@user = User.find_by_id(params[:id])
+  		if @user.update_attributes(params[:user].permit(:login, :password, :fio, :group, :avatar))
+		    redirect_to users_path, :notice => "Изменения внесены успешно!"
+		  else
+		  	flash[:notice] = "Изменения в настройки пользователя внести не удалось"
+		    render "edit"
+		  end
   	else
 	  	@user = current_user
-	  end
-	  if @user.update_attributes(params[:user].permit(:login, :password, :fio, :group))
-	    redirect_to users_path, :notice => "Изменения внесены успешно!"
-	  else
-	  	#flash[:notice] = "Изменения внести не удалось"
-	    render "edit"
+	  	if @user.update_attributes(params[:user].permit(:password, :avatar))
+		    redirect_to edit_user_path(@user), :notice => "Изменения внесены успешно!"
+		  else
+		  	flash[:notice] = "Изменения в настройки пользователя внести не удалось"
+		    render "edit"
+		  end
 	  end
   end
 
