@@ -1,5 +1,9 @@
-<h1>Редактор публикации</h1>
+<% content_for :right_col do %>
+<%= render 'templates' %>
+<% end %>
 
+<h3>Редактор публикации</h3>
+<div class="publication_editor">
 <%= form_for @publication do |f| %>
   <p>
     <%= f.label :title %><br>
@@ -11,7 +15,35 @@
     <%= f.text_area :text %>
   </p>
  
+  <div class="form_box">
+    <h3>Картинки:</h3>
+    <script type="text/javascript">
+    //<![CDATA[
+    var catimg_attr_counter = <%= @images.count %> ;
+    var user_id = <%= current_user.id %> ;
+    //]]>
+    </script>
+    <div id='add_catalogimgs_block'>
+      <% 1.times { @publication.images.build } %>
+      <%= f.fields_for :images do |builder| %>
+        <p>
+          <% if builder.object.new_record? %>
+            <%= builder.file_field :picture %><br>
+          <% else %>
+            <%= builder.hidden_field :user_id, :value => current_user.id %>
+            <%= image_tag builder.object.picture.url(:thumb) %>
+            <%= builder.file_field :picture %>
+            <%= builder.check_box :_destroy %>
+            <%= builder.label :_destroy, "Удалить" %><br>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+    <p><a href="#" id='add_catalogimgs_link'>+ Добавить картинку</a></p>
+  </div>
+
   <p>
     <%= f.submit %>
   </p>
 <% end %>
+</div>

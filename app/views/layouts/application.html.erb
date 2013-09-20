@@ -8,6 +8,7 @@
   <meta name="keywords" content="Страна Советов">
   <title>StranaSovetov.info - Страна Советов</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery-1.10.2.min.js" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -17,7 +18,8 @@
 
   <div class="layout">
     <%= render 'layouts/left_col' %>
-    <%= render 'layouts/right_col' %>
+    <!-- <%= render 'layouts/right_col' %> -->
+    <%= yield :right_col %>
     <div class="col2">
     
       <%= render 'layouts/notice' %>
@@ -26,6 +28,7 @@
 
     </div>
   </div>
+  <div class="bottom_post"></div>
   <div class="footer">Подвал</div>
 
 </body>

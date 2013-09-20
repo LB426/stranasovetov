@@ -10,7 +10,7 @@ class PublicationsController < ApplicationController
   end
   
   def create
-    @publication = current_user.publications.new(params[:publication].permit(:title, :text))
+    @publication = current_user.publications.new(params.require(:publication).permit(:title, :text, images_attributes: [:user_id, :picture]))
     if @publication.save
       redirect_to @publication
     else
@@ -20,15 +20,17 @@ class PublicationsController < ApplicationController
   
   def show
     @publication = Publication.find(params[:id])
+    @images = @publication.images.where("user_id = ?", current_user).order("id ASC")
   end
   
   def edit
     @publication = current_user.publications.find(params[:id])
+    @images = @publication.images.where("user_id = ?", current_user).order("id ASC")
   end
   
   def update
     @publication = current_user.publications.find(params[:id])
-    if @publication.update_attributes(params[:publication].permit(:title, :text))
+    if @publication.update_attributes(params.require(:publication).permit(:title, :text, images_attributes: [:user_id, :picture, :_destroy, :id]))
 	    render "show"
 	  else
 	    render "edit"

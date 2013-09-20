@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :publications
+  has_many :publications, :dependent => :destroy
+  has_many :images, :dependent => :destroy
 
   attr_accessor :password
   before_save :encrypt_password

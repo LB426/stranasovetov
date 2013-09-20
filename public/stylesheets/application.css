@@ -102,8 +102,12 @@ A.pravdalink:hover {text-decoration: underline;}
   margin: 10px 145px 0 210px; /* Отступ справа и слева */ 
   border: 0px solid #0F0;
 }
+.bottom_post {
+  margin: 40px 0px 0px 0px; /* Значения отступов */
+  position: relative;
+}
 .post {
-  margin: 10px 5px 0 10px; /* Значения отступов */
+  margin: 0px 5px 15px 10px; /* Значения отступов */
   padding: 5px 5px 30px 5px; /* Поля вокруг текста */
   border: 3px solid #EFEFEF; /* Параметры рамки */
   position: relative;
@@ -189,4 +193,33 @@ A.pravdalink:hover {text-decoration: underline;}
 .login_form {
   position: absolute;
   bottom: 0;
+}
+
+.publication_editor {
+  /*margin: 0px 5px 45px 10px; /* Значения отступов */
+  /*padding: 5px 5px 30px 5px; /* Поля вокруг текста */
+  border: 2px solid #EFEFEF; /* Параметры рамки */
+  position: relative;
+  overflow: auto;
+}
+
+.publ_viewer {
+  /*margin: 0px 5px 45px 10px; /* Значения отступов */
+  padding: 20px 20px 20px 20px; /* Поля вокруг текста */
+  border: 1px solid #DFDFDF; /* Параметры рамки */
+  position: relative;
+}
+.publ_header {
+  position: absolute;
+  border: 1px solid #DFDFDF;
+  top: 10px; 
+  left: 30px; 
+  color: #444;
+  font-size: 1.5em;
+  text-align: left;
+  font-weight: bold;
+}
+.publ_text {
+  margin: 20px 0px 10px 0px;
+  border: 1px solid #DFDFDF;
 }

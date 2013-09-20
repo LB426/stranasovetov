@@ -1,9 +1,17 @@
-<p>
-  <strong>Title:</strong>
-  <%= @publication.title %>
-</p>
- 
-<p>
-  <strong>Text:</strong>
-  <%= @publication.text %>
-</p>
+<% content_for :right_col do %>
+<%= render 'templates' %>
+<% end %>
+
+<div class="publ_viewer">
+	<div class="publ_header">
+	  <%= @publication.title %>
+	</div>
+	<div class="publ_text">
+		<p>
+	  	<%= @publication.text %>
+		</p>
+	</div>
+
+<%= image_tag @images[0].picture.url(:medium) %>
+<%= image_tag @images[0].picture.url, :size => "200x130" %>
+</div>

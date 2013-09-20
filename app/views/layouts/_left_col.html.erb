@@ -2,12 +2,14 @@
 	<div><a href="/">Главная страница</a></div>
 	<div class="line"></div>
 	<% if current_user %>
-		<% if current_user.group =~ /администратор/ %>
-	  	<%= link_to "Пользователи", users_path %>
-	  <% end %>
 	  <%= link_to "Мои Публикации", publications_path %>
 	  <%= link_to "#{current_user.fio}, настройки", edit_user_path(current_user) %>
   	<%= link_to "Выход", logout_path %>
+  	<% if current_user.group =~ /администратор/ %>
+  		<div class="line"></div>
+  		<p>меню администратора</p>
+	  	<%= link_to "Пользователи", users_path %>
+	  <% end %>
   <% else %>
     <%= link_to "Вход", login_path %>
   <% end %>
