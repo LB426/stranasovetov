@@ -6,12 +6,25 @@
 	<div class="publ_header">
 	  <%= @publication.title %>
 	</div>
-	<div class="publ_text">
-		<p>
-	  	<%= @publication.text %>
-		</p>
+	<div class="publ_time">
+	  <%= @publication.created_at.strftime("%Y.%m.%d") %>
 	</div>
-
-<%= image_tag @images[0].picture.url(:medium) %>
-<%= image_tag @images[0].picture.url, :size => "200x130" %>
+	<div class="publ_data">
+		<% img_count = 0 %>
+		<% @publication_text_arr_abzac.each do |abzac|%>
+			<div class="publ_abzac">
+				<% if @publication.images.count > 0 %>
+					<% if @images[img_count] != nil && @images[img_count].size != "1x1" %>
+						<%= image_tag @images[img_count].picture.url(:medium), :size => @images[img_count].size, :align=>"#{@images[img_count].align}" %>
+					<% end %>
+					<% img_count += 1 %>
+				<% end %>
+		  	<%= abzac.html_safe %>
+			</div>
+			<div class="publ_abzac_clear"></div>
+		<% end %>
+	</div>
+	<div class="publ_avtor">
+	  <%= User.find(@publication.user_id).fio %>
+	</div>
 </div>

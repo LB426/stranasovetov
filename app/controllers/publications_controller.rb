@@ -21,6 +21,8 @@ class PublicationsController < ApplicationController
   def show
     @publication = Publication.find(params[:id])
     @images = @publication.images.where("user_id = ?", current_user).order("id ASC")
+    @publication_text_arr_abzac = @publication.text.split("\r")
+    @publication_text = @publication.text.gsub("\r","</p><p>\r")
   end
   
   def edit
@@ -30,8 +32,8 @@ class PublicationsController < ApplicationController
   
   def update
     @publication = current_user.publications.find(params[:id])
-    if @publication.update_attributes(params.require(:publication).permit(:title, :text, images_attributes: [:user_id, :picture, :_destroy, :id]))
-	    render "show"
+    if @publication.update_attributes(params.require(:publication).permit(:title, :text, images_attributes: [:user_id, :picture, :_destroy, :id, :size, :description, :align]))
+	    redirect_to @publication
 	  else
 	    render "edit"
 	  end

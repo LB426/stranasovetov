@@ -7,12 +7,12 @@
 <%= form_for @publication do |f| %>
   <p>
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :size => "80" %>
   </p>
  
   <p>
     <%= f.label :text %><br>
-    <%= f.text_area :text %>
+    <%= f.text_area :text, :cols => "92", :rows => "25" %>
   </p>
  
   <div class="form_box">
@@ -24,19 +24,26 @@
     //]]>
     </script>
     <div id='add_catalogimgs_block'>
-      <% 1.times { @publication.images.build } %>
+      <% if @publication.images.count == 0 %>
+        <% 1.times { @publication.images.build } %>
+      <% end %>
       <%= f.fields_for :images do |builder| %>
         <p>
           <% if builder.object.new_record? %>
-            <%= builder.file_field :picture %><br>
+            <%= builder.hidden_field :user_id, :value => current_user.id %>
+            <%= builder.file_field :picture %>
+            <%= builder.text_field :size %>
           <% else %>
             <%= builder.hidden_field :user_id, :value => current_user.id %>
             <%= image_tag builder.object.picture.url(:thumb) %>
             <%= builder.file_field :picture %>
+            <%= builder.text_field :size %>
+            <%= builder.select :align, [['лево', 'left'], ['право', 'right'], ['центр', 'middle']] %>
             <%= builder.check_box :_destroy %>
-            <%= builder.label :_destroy, "Удалить" %><br>
+            <%= builder.label :_destroy, "Удалить" %>
           <% end %>
         </p>
+        <hr>
       <% end %>
     </div>
     <p><a href="#" id='add_catalogimgs_link'>+ Добавить картинку</a></p>

@@ -208,10 +208,11 @@ A.pravdalink:hover {text-decoration: underline;}
   padding: 20px 20px 20px 20px; /* Поля вокруг текста */
   border: 1px solid #DFDFDF; /* Параметры рамки */
   position: relative;
+  width: 850px;
 }
 .publ_header {
   position: absolute;
-  border: 1px solid #DFDFDF;
+  border: 0px solid #DFDFDF;
   top: 10px; 
   left: 30px; 
   color: #444;
@@ -219,7 +220,45 @@ A.pravdalink:hover {text-decoration: underline;}
   text-align: left;
   font-weight: bold;
 }
-.publ_text {
-  margin: 20px 0px 10px 0px;
-  border: 1px solid #DFDFDF;
+.publ_time {
+  position: absolute;
+  border: 3px solid #EFEFEF;
+  border-bottom: 1px solid #AFAFAF;
+  top: 10px;
+  right: 30px;
+  padding: 5px 5px 5px 5px;
+  color: #444;
+  background: #EFEFEF;
+  font-size: 0.8em;
+  text-align: right;
+  font-weight: bold; 
+}
+.publ_avtor {
+  position: absolute;
+  right: 30px;
+  bottom: 5px;
+  padding: 5px 5px 5px 5px;
+  color: #444;
+  font-size: 0.8em;
+  text-align: right;
+  font-weight: bold; 
+  font-style: italic;
+}
+.publ_data {
+  margin: 40px 0px 10px 0px;
+  border: 0px solid #DFDFDF;
+  text-align: justify;
+}
+.publ_data img {
+  border: 10px solid #DFDFDF;
+  border-radius: 3px;
+  margin: 0px 10px 10px 10px;
+}
+.publ_abzac {
+  border: 0px solid #DFDFDF;
+  position: relative;
+}
+.publ_abzac_clear {
+  position: static;
+  margin: 0px 0px 10px 0px;
 }
