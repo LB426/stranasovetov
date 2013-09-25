@@ -8,6 +8,7 @@ gem 'mysql2'
 
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'unicorn'
 
 gem 'quiet_assets', :group => :development
 
