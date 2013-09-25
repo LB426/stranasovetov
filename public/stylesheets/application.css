@@ -258,6 +258,10 @@ A.pravdalink:hover {text-decoration: underline;}
   border: 0px solid #DFDFDF;
   position: relative;
 }
+iframe {
+  margin: 0 auto;
+  display:block;
+}
 .publ_abzac_clear {
   position: static;
   margin: 0px 0px 10px 0px;

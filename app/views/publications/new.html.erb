@@ -37,8 +37,8 @@
       <%= f.fields_for :images do |builder| %>
         <%= builder.hidden_field :user_id, :value => current_user.id %>
         <%= builder.file_field :picture %><br>
-        Размер: <%= builder.text_field :size, :value => "300x200", :size=>6, :disabled => true %><br>
-        Выравнивание: <%= builder.text_field :align, :value => "лево", :size=>6, :disabled => true %><br>
+        Размер: <%= builder.text_field :size, :value => "300x200", :size=>6 %><br>
+        Выравнивание: <%= builder.text_field :align, :value => "left", :size=>6 %><br>
       <% end %>
     </div>
     <p><a href="#" id='add_catalogimgs_link'>+ Добавить картинку</a></p>

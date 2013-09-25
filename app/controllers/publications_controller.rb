@@ -10,7 +10,7 @@ class PublicationsController < ApplicationController
   end
   
   def create
-    @publication = current_user.publications.new(params.require(:publication).permit(:title, :text, images_attributes: [:user_id, :picture]))
+    @publication = current_user.publications.new(params.require(:publication).permit(:title, :text, images_attributes: [:user_id, :picture, :_destroy, :id, :size, :description, :align]))
     if @publication.save
       redirect_to @publication
     else
@@ -20,7 +20,7 @@ class PublicationsController < ApplicationController
   
   def show
     @publication = Publication.find(params[:id])
-    @images = @publication.images.where("user_id = ?", current_user).order("id ASC")
+    @images = @publication.images.where("user_id = ?", @publication.user_id).order("id ASC")
     @publication_text_arr_abzac = @publication.text.split("\r")
     @publication_text = @publication.text.gsub("\r","</p><p>\r")
   end

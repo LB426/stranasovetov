@@ -32,7 +32,8 @@
           <% if builder.object.new_record? %>
             <%= builder.hidden_field :user_id, :value => current_user.id %>
             <%= builder.file_field :picture %>
-            <%= builder.text_field :size %>
+            <%= builder.text_field :size, :value => "300x250" %>
+            <%= builder.select :align, [['лево', 'left'], ['право', 'right'], ['центр', 'middle']] %>
           <% else %>
             <%= builder.hidden_field :user_id, :value => current_user.id %>
             <%= image_tag builder.object.picture.url(:thumb) %>
