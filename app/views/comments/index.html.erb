@@ -1,0 +1,31 @@
+<h1>Listing comments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Publication</th>
+      <th>Body</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.user_id %></td>
+        <td><%= comment.publication_id %></td>
+        <td><%= comment.body %></td>
+        <td><%= link_to 'Show', publication_comment_path(1,comment) %></td>
+        <td><%= link_to 'Edit', edit_publication_comment_path(1,comment) %></td>
+        <td><%= link_to 'Destroy', publication_comment_path(1,comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comment', new_publication_comment_path %>

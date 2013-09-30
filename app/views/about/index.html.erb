@@ -13,8 +13,8 @@
       </a>
     </div>
     <div class="post_auvtor">
-      <a href="#">что говорят люди?</a> ,
-      рубрика: <a href="#">новости</a>, 
+      <%= link_to "Комментарии", publication_comments_path(p) %>|
+      рубрика: <a href="#">новости</a>|
       автор:
       <a href="candidats.html" title="дави сюда">
         <%= User.find(p.user_id).fio %>

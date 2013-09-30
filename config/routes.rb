@@ -1,7 +1,9 @@
 Stranasovetov::Application.routes.draw do
 
   get "/publications/:id/delete" => "publications#destroy", :as => "delete_publication"
-  resources :publications
+  resources :publications do
+    resources :comments
+  end
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
