@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_before_action :require_login, only: [:index]
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments

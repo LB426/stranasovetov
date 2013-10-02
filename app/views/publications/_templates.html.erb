@@ -1,4 +1,8 @@
+<% if current_user %>
 <div class="col3">
 <%= link_to "Изменить", edit_publication_path(@publication) %>
 <%= link_to "Просмотреть", publication_path(@publication) %>
 </div>
+<% else %>
+<%= render 'layouts/right_col' %>
+<% end %>
