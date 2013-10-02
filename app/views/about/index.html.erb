@@ -8,15 +8,13 @@
       <%= p.text[0..500].html_safe + "......" %>
     </div>
     <div class="post_link">
-      <a href="candidats.html" title="дави сюда">
-        <%= link_to "читать дальше -->>", publication_path(p) %>
-      </a>
+      <%= link_to "читать дальше -->>", publication_path(p), :title => "нажми тут чтобы прочесть" %>
     </div>
     <div class="post_auvtor">
       <%= link_to "Комментарии", publication_comments_path(p) %>|
       рубрика: <a href="#">новости</a>|
       автор:
-      <a href="candidats.html" title="дави сюда">
+      <a href="#" title="дави сюда">
         <%= User.find(p.user_id).fio %>
       </a>
       дата выпуска: <a href="#"><%= p.updated_at.strftime("%Y:%m:%d %H:%M") %></a>

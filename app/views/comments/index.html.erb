@@ -1,31 +1,22 @@
-<h1>Listing comments</h1>
+<% content_for :right_col do %>
+<%= render 'layouts/right_col' %>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Publication</th>
-      <th>Body</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<h3>Комментарии к статье <%= link_to "#{@publication.title} -->>", publication_path(@publication), :title => "нажми тут чтобы перейти к публикации" %></h3>
 
-  <tbody>
-    <% @comments.each do |comment| %>
-      <tr>
-        <td><%= comment.user_id %></td>
-        <td><%= comment.publication_id %></td>
-        <td><%= comment.body %></td>
-        <td><%= link_to 'Show', publication_comment_path(1,comment) %></td>
-        <td><%= link_to 'Edit', edit_publication_comment_path(1,comment) %></td>
-        <td><%= link_to 'Destroy', publication_comment_path(1,comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @comments.each do |comment| %>
+  <div class="post">
+    <div class="post_text">
+      <%= comment.body %>
+    </div>
+    <div class="post_auvtor">
+      <%= User.find(comment.user_id).fio %>
+      <%= comment.updated_at.strftime("%Y:%m:%d %H:%M") %>
+    </div>
+  </div>
+<% end %>
 
-<br>
 
-<%= link_to 'New Comment', new_publication_comment_path %>
+<div class="post">
+  <%= render 'form' %>
+</div>

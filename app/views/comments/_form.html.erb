@@ -1,4 +1,4 @@
-<%= form_for(@comment, :url => publication_comment_path(1,@comment)) do |f| %>
+<%= form_for(@comment, :url => publication_comment_path(@publication.id,@comment)) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -10,20 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+  
+  <%= f.hidden_field :publication_id, :value => @publication.id %>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.text_area :body, :cols => "80", :rows => "5" %>
   </div>
-  <div class="field">
-    <%= f.label :publication_id %><br>
-    <%= f.number_field :publication_id %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
+  <%= recaptcha_tags unless current_user %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Добавить комментарий" %>
   </div>
 <% end %>

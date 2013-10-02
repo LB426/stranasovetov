@@ -1,11 +1,13 @@
 class CommentsController < ApplicationController
-  skip_before_action :require_login, only: [:index]
+  skip_before_action :require_login, only: [:index, :create]
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @publication = Publication.find(params[:publication_id])
+    @comments = Comment.where("publication_id = ?", @publication.id).order("id ASC")
+    @comment = Comment.new
   end
 
   # GET /comments/1
@@ -26,14 +28,30 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
+    @publication = Publication.find(params[:publication_id])
+    anonymous = User.find_by_login("anonymous")
     @comment = Comment.new(comment_params)
+    if current_user
+      @comment.user_id = current_user.id
+    else
+      @comment.user_id = anonymous.id
+    end
 
     respond_to do |format|
-      if @comment.save
-        format.html { redirect_to publication_comments_path(1,@comment), notice: 'Comment was successfully created.' }
+      if current_user
+        if @comment.save
+          format.html { redirect_to publication_comments_path(@publication,@comment) }
+        else
+          flash[:notice] = "Ошибка! Пустой комментарий."
+          format.html { redirect_to publication_comments_path(@publication,@comment) }
+        end
       else
-        format.html { render action: 'new' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        if verify_recaptcha( :model => @comment, :message => "Неправильно ввели буквы с картинки!" ) && @comment.save
+          format.html { redirect_to publication_comments_path(@publication,@comment) }
+        else
+          flash[:notice] = "Ошибка! Пустой комментарий или неправильные буквы с картинки."
+          format.html { redirect_to publication_comments_path(@publication,@comment) }
+        end
       end
     end
   end
