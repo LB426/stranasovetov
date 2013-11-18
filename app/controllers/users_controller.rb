@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   def update
   	if current_user.group =~ /администратор/
   		@user = User.find_by_id(params[:id])
-  		if @user.update_attributes(params[:user].permit(:login, :password, :fio, :group, :avatar))
+  		if @user.update_attributes(params[:user].permit(:login, :password, :fio, :group, :avatar, :characterization))
 		    redirect_to users_path, :notice => "Изменения внесены успешно!"
 		  else
 		  	flash[:notice] = "Изменения в настройки пользователя внести не удалось"
@@ -68,13 +68,17 @@ class UsersController < ApplicationController
 		  end
   	else
 	  	@user = current_user
-	  	if @user.update_attributes(params[:user].permit(:password, :avatar))
+	  	if @user.update_attributes(params[:user].permit(:password, :avatar, :fio, :characterization))
 		    redirect_to edit_user_path(@user), :notice => "Изменения внесены успешно!"
 		  else
 		  	flash[:notice] = "Изменения в настройки пользователя внести не удалось"
 		    render "edit"
 		  end
 	  end
+  end
+  
+  def show
+    @user = User.find_by_id(params[:id])
   end
 
 end

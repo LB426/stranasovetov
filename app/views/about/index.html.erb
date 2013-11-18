@@ -13,10 +13,7 @@
     <div class="post_auvtor">
       <%= link_to "Комментарии", publication_comments_path(p) %>|
       рубрика: <a href="#">новости</a>|
-      автор:
-      <a href="#" title="дави сюда">
-        <%= User.find(p.user_id).fio %>
-      </a>
+      автор: <%= link_to User.find(p.user_id).fio, user_path(p.user_id) %>
       дата выпуска: <a href="#"><%= p.updated_at.strftime("%Y:%m:%d %H:%M") %></a>
     </div>
   </div>

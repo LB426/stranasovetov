@@ -26,12 +26,20 @@ class PublicationsController < ApplicationController
   end
   
   def edit
-    @publication = current_user.publications.find(params[:id])
+    if current_user.group == "администратор"
+      @publication = Publication.find(params[:id])
+    else
+      @publication = current_user.publications.find(params[:id])
+    end
     @images = @publication.images.where("user_id = ?", current_user).order("id ASC")
   end
   
   def update
-    @publication = current_user.publications.find(params[:id])
+    if current_user.group == "администратор"
+      @publication = Publication.find(params[:id])
+    else
+      @publication = current_user.publications.find(params[:id])
+    end
     if @publication.update_attributes(params.require(:publication).permit(:title, :text, images_attributes: [:user_id, :picture, :_destroy, :id, :size, :description, :align]))
 	    redirect_to @publication
 	  else

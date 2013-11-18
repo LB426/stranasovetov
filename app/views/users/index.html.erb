@@ -10,8 +10,13 @@
     <td><%= user.fio %></td>
     <td><%= user.group %></td>
     <td><%= user.updated_at.strftime("%Y:%m:%d %H:%M") %></td>
-    <td><%= link_to "Изменить", edit_user_path(user) %></td>
-    <td><%= link_to "Удалить", delete_user_path(user) %></td>
+    <% unless user.login == "anonymous" %>
+      <td><%= link_to "Изменить", edit_user_path(user) %></td>
+      <td><%= link_to "Удалить", delete_user_path(user) %></td>
+    <% else %>
+      <td><%= link_to "Изменить", edit_user_path(user) %></td>
+      <td>Удалить</td>
+    <% end %>
   </tr>
 <% end %>
 </table>

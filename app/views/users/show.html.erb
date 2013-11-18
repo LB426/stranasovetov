@@ -1,0 +1,14 @@
+<div class="post">
+<h1>Об авторе</h1>
+<p>
+  <%= image_tag @user.avatar.url %>
+</p>
+<p>
+  <%= @user.fio %>
+</p>
+<p>
+  <%= @user.characterization.html_safe %>
+</p>
+
+</div>
+
