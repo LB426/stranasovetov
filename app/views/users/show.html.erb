@@ -7,7 +7,7 @@
   <%= @user.fio %>
 </p>
 <p>
-  <%= @user.characterization.html_safe %>
+  <%= @user.characterization.html_safe unless @user.characterization.nil? %>
 </p>
 
 </div>
