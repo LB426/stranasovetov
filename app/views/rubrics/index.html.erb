@@ -1,0 +1,27 @@
+<h1>Список рубрик</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Название рубрики</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rubrics.each do |rubric| %>
+      <tr>
+        <td><%= rubric.name %></td>
+        <td><%= link_to 'Показать', rubric %></td>
+        <td><%= link_to 'Редактировать', edit_rubric_path(rubric) %></td>
+        <td><%= link_to 'Удалить', rubric, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Создать новую рубрику', new_rubric_path %>

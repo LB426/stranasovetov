@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Название рубрики:</strong>
+  <%= @rubric.name %>
+</p>
+
+<%= link_to 'Редактировать название рубрики', edit_rubric_path(@rubric) %> |
+<%= link_to 'Назад', rubrics_path %>

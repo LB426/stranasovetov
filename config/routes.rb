@@ -1,5 +1,7 @@
 Stranasovetov::Application.routes.draw do
 
+  resources :rubrics
+
   get "/publications/:id/delete" => "publications#destroy", :as => "delete_publication"
   resources :publications do
     resources :comments
