@@ -49,6 +49,15 @@
     </div>
     <p><a href="#" id='add_catalogimgs_link'>+ Добавить картинку</a></p>
   </div>
+  <p>
+    <h3>Рубрики:</h3>
+    <%= f.fields_for :rubrics do |rubric| %>
+      <% Rubric.all.each do |r| %>
+        <%= r.name %>
+        <%= rubric.check_box(r.id,{checked: true},r.name) %>
+      <% end %>
+    <% end %>
+  </p>
 
   <p>
     <%= f.submit %>

@@ -64,8 +64,7 @@ class RubricsController < ApplicationController
 
   private
     def you_is_admin?
-      if current_user.group =~ /администратор/
-      else
+      unless current_user.group =~ /администратор/
   	  	redirect_to root_path, :notice => "Для работы с рубриками нужны права администратора!"
   	  end
     end

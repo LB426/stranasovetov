@@ -40,7 +40,12 @@ class PublicationsController < ApplicationController
     else
       @publication = current_user.publications.find(params[:id])
     end
-    if @publication.update_attributes(params.require(:publication).permit(:title, :text, images_attributes: [:user_id, :picture, :_destroy, :id, :size, :description, :align]))
+    params.require(:publication).permit!
+    unless params[:publication][:rubrics].nil? 
+      @publication.rubrics = params[:publication][:rubrics]
+    end
+    #if @publication.update_attributes(params.require(:publication).permit('rubrics', :title, :text, images_attributes: [:user_id, :picture, :_destroy, :id, :size, :description, :align]))
+	  if @publication.update_attributes(params[:publication])
 	    redirect_to @publication
 	  else
 	    render "edit"
